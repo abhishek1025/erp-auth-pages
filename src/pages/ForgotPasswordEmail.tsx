@@ -1,4 +1,4 @@
-const ForgotPasswordEmail = () => {
+export const ForgotPasswordEmail = () => {
   return (
     <div
       style={{
@@ -76,6 +76,4 @@ const ForgotPasswordEmail = () => {
     </div>
   );
 };
-
-export default ForgotPasswordEmail;
 

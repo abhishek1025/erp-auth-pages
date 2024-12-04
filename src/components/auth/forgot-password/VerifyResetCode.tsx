@@ -1,24 +1,22 @@
+import { ResetPasswordCodeFormType } from '@/interface';
+import { OtpSchema } from '@/schema';
 import { Button, Input } from 'antd';
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import * as Yup from 'yup';
 
-const VerifyResetCode: React.FC<{
+export interface IVerifyResetCode {
   handleChangeStep: (step: number) => void;
   email: string | null | undefined;
-}> = ({ handleChangeStep, email }) => {
-  type ResetPasswordCode = {
-    otp: string;
-  };
-  const formik = useFormik<ResetPasswordCode>({
+}
+
+export const VerifyResetCode: React.FC<IVerifyResetCode> = ({
+  handleChangeStep,
+  email,
+}) => {
+  const formik = useFormik<ResetPasswordCodeFormType>({
     initialValues: {
       otp: '',
     },
-    validationSchema: Yup.object({
-      otp: Yup.string()
-        .length(4, 'OTP must be 6 digits')
-        .required('Verification Code is required'),
-    }),
+    validationSchema: OtpSchema,
     onSubmit: values => {
       console.log(values);
       handleChangeStep(3);
@@ -72,6 +70,4 @@ const VerifyResetCode: React.FC<{
     </div>
   );
 };
-
-export default VerifyResetCode;
 

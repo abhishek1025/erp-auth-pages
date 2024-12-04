@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router';
-import LogIn from './pages/auth/logIn/LogIn';
-import ForgotPassword from './pages/auth/forgot-password/ForgotPassword';
-import ForgotPasswordEmail from './pages/ForgotPasswordEmail';
 import './App.scss';
+import { LogIn, ForgotPassword, ForgotPasswordEmail } from '@/pages';
+
 const App = () => {
   return (
     <Routes>

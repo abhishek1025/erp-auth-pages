@@ -1,21 +1,21 @@
+import { PasswordResetRequestFormType } from '@/interface';
+import { PasswordResetSchema } from '@/schema';
 import { MailOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-const PasswordResetRequest: React.FC<{
-  handleChangeStep: (step: number, email?: string) => void;
-}> = ({ handleChangeStep }) => {
-  type PasswordResetRequest = {
-    email: string;
-  };
 
-  const formik = useFormik<PasswordResetRequest>({
+export interface IPasswordResetRequest {
+  handleChangeStep: (step: number, email?: string) => void;
+}
+
+export const PasswordResetRequest: React.FC<IPasswordResetRequest> = ({
+  handleChangeStep,
+}) => {
+  const formik = useFormik<PasswordResetRequestFormType>({
     initialValues: {
       email: '',
     },
-    validationSchema: Yup.object({
-      email: Yup.string().email().required('Email is required'),
-    }),
+    validationSchema: PasswordResetSchema,
     onSubmit: values => {
       handleChangeStep(2, values.email);
     },
@@ -57,6 +57,4 @@ const PasswordResetRequest: React.FC<{
     </>
   );
 };
-
-export default PasswordResetRequest;
 

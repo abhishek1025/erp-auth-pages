@@ -1,36 +1,20 @@
+import { ResetPasswordFormType } from '@/interface';
+import { NewPasswordSchema } from '@/schema';
 import {
   EyeInvisibleOutlined,
   EyeTwoTone,
   LockOutlined,
 } from '@ant-design/icons';
 import { Button, Input } from 'antd';
-
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
-const SetNewPassword: React.FC = () => {
-  type ResetPassword = {
-    password: string;
-    confirmPassword: string;
-  };
-
-  const formik = useFormik<ResetPassword>({
+export const SetNewPassword: React.FC = () => {
+  const formik = useFormik<ResetPasswordFormType>({
     initialValues: {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: Yup.object({
-      password: Yup.string()
-        .required('Password is required')
-        .matches(
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
-          'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character'
-        ),
-
-      confirmPassword: Yup.string()
-        .required('Confirm password is required')
-        .oneOf([Yup.ref('password')], 'Passwords must match'),
-    }),
+    validationSchema: NewPasswordSchema,
     onSubmit: () => {},
   });
 
@@ -101,6 +85,4 @@ const SetNewPassword: React.FC = () => {
     </div>
   );
 };
-
-export default SetNewPassword;
 

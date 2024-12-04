@@ -1,15 +1,17 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import PasswordResetRequest from '../../../components/auth/forgot-password/PasswordResetRequest';
-import SetNewPassword from '../../../components/auth/forgot-password/SetNewPassword';
-import VerifyResetCode from '../../../components/auth/forgot-password/VerifyResetCode';
 import './forgotPassword.scss';
 
-import ForgotPasswordBanner from '../../../assets/images/forgot-password-banner.jpg';
-import Logo from '../../../components/Logo';
+import ForgotPasswordBanner from '@/assets/images/forgot-password-banner.jpg';
+import {
+  Logo,
+  PasswordResetRequest,
+  SetNewPassword,
+  VerifyResetCode,
+} from '@/components';
 
-const ForgotPassword = () => {
+export const ForgotPassword = () => {
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string | null>();
 
@@ -79,6 +81,4 @@ const ForgotPassword = () => {
     </div>
   );
 };
-
-export default ForgotPassword;
 

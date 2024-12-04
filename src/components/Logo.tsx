@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Logo = () => {
+export const Logo = () => {
   return (
     <div>
       <h2
@@ -13,4 +11,3 @@ const Logo = () => {
   );
 };
 
-export default Logo;

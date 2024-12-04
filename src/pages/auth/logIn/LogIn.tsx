@@ -1,31 +1,25 @@
-import { Button, Checkbox, Input } from 'antd';
-import './LogIn.scss';
+import LogInBanner from '@/assets/images/login-banner.jpg';
+import { Logo } from '@/components';
+import { LoginFormType } from '@/interface';
+import { LoginSchema } from '@/schema';
 import {
   EyeInvisibleOutlined,
   EyeTwoTone,
   LockOutlined,
   MailOutlined,
 } from '@ant-design/icons';
+import { Button, Checkbox, Input } from 'antd';
+import { useFormik } from 'formik';
 import { Link } from 'react-router';
-import LogInBanner from '../../../assets/images/login-banner.jpg';
-import Logo from '../../../components/Logo';
-import { FormikConfig, useFormik } from 'formik';
-import * as Yup from 'yup';
-const LogIn: React.FC = () => {
-  type AuthInfo = {
-    email: string;
-    password: string;
-  };
+import './LogIn.scss';
 
-  const formik = useFormik<AuthInfo>({
+export const LogIn: React.FC = () => {
+  const formik = useFormik<LoginFormType>({
     initialValues: {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({
-      email: Yup.string().email().required('Email is required'),
-      password: Yup.string().required('Password is required'),
-    }),
+    validationSchema: LoginSchema,
     onSubmit: () => {},
   });
 
@@ -106,6 +100,4 @@ const LogIn: React.FC = () => {
     </div>
   );
 };
-
-export default LogIn;
 
